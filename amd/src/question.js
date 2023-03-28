@@ -25,14 +25,12 @@ define([
     'jquery',
     'core/dragdrop',
     'qtype_ddmarker/shapes',
-    'core/key_codes',
-    'core_form/changechecker'
+    'core/key_codes'
 ], function(
     $,
     dragDrop,
     Shapes,
-    keys,
-    FormChangeChecker
+    keys
 ) {
 
     "use strict";
@@ -970,8 +968,9 @@ define([
          * Handle when the form is dirty.
          */
         handleFormDirty: function() {
-            const responseForm = document.getElementById('responseform');
-            FormChangeChecker.markFormAsDirty(responseForm);
+          if (typeof M.core_formchangechecker !== 'undefined') {
+            M.core_formchangechecker.set_form_changed();
+          }
         }
     };
 
